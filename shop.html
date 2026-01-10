@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Perfumy | Luxury Shop</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Georgia, serif;
+}
+body{
+    background:#f6efe6;
+    color:#2b2b2b;
+}
+nav{
+    padding:20px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:30px;
+}
+nav a{
+    text-decoration:none;
+    color:#2b2b2b;
+}
+.section{
+    padding:60px;
+}
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:30px;
+}
+.card{
+    background:#fff;
+    padding:20px;
+    text-align:center;
+    transition:0.4s ease;
+}
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    margin-bottom:15px;
+    transition:0.4s ease;
+}
+.card:hover img{
+    transform:scale(1.05);
+}
+.card h3{margin-bottom:5px}
+.card p{font-size:14px;margin-bottom:10px}
+.card button{
+    padding:8px 15px;
+    border:1px solid #2b2b2b;
+    background:none;
+    cursor:pointer;
+}
+.card button:hover{
+    background:#2b2b2b;
+    color:white;
+}
+.pagination{
+    text-align:center;
+    margin-top:50px;
+}
+.pagination button{
+    padding:8px 14px;
+    margin:5px;
+    border:1px solid #2b2b2b;
+    background:none;
+    cursor:pointer;
+}
+.toast{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    background:#2b2b2b;
+    color:white;
+    padding:15px 25px;
+    border-radius:30px;
+    opacity:0;
+    pointer-events:none;
+    transition:0.4s;
+}
+.toast.show{opacity:1}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h3>PERFUMY</h3>
+    <ul>
+        <li><a href="navi.html">Home</a></li>
+        
+        <li><a href="cart.html">Cart</a></li>
+    </ul>
+</nav>
+
+<section class="section">
+    <h2>Luxury Fragrances</h2>
+    <div class="products" id="products"></div>
+    <div class="pagination" id="pagination"></div>
+</section>
+
+<div class="toast" id="toast">Product added to cart 🛍️</div>
+
+<script>
+// ===== PRODUCT DATA =====
+const brands = [
+ "Dior","Chanel","Tom Ford","YSL","Gucci",
+ "Maison Francis","Byredo","Jo Malone","Creed","Armani"
+];
+
+// 20 UNIQUE perfume images (5 pages × 4 products)
+const images = [
+   "https://images.pexels.com/photos/21008921/pexels-photo-21008921/free-photo-of-chanel-perfume-vial-next-to-a-white-flower.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+   "https://www.shutterstock.com/image-photo/brussels-belgium-january-2020-miss-260nw-1669270129.jpg",
+   "https://i.pinimg.com/474x/2e/0b/d4/2e0bd458fc3e5a77fdb93dd63e773ed4.jpg",
+   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFhKG4ULaYjC88O36m2712eeR5Ot1x3B60NQ&s",
+   "https://pagpackaging.com/wp-content/uploads/2024/11/Dior-24.png",
+   "https://5.imimg.com/data5/SELLER/Default/2022/11/WT/RN/XY/56713740/dior-sauvage-elixir-spray-60ml.jpg",
+   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEdt8F-p24w_2UoF3APsBezxak0358RL98sQ&s",
+   "https://www.timeinternational.co.id/wp-content/uploads/12_2025_WOMEN_SUMMER_25_ETE-CELINE_2400PX_21-600x600.jpg",
+   "https://www.parcos.com/_next/image?url=https%3A%2F%2Fprod.parcoscom.hyperx.cloud%2Fmedia%2Fcatalog%2Fproduct%2F7%2F3%2F737052925127_1_2.webp&w=1920&q=75",
+   "https://www.directcosmetics.com/images/gucci-eau-de-parfum-ii-eau-de-parfum-spray-30ml-box-imperfect-gucci-p9270-13676_image.jpg",
+   "https://www.awawaluxury.com/cdn/shop/articles/Gemini_Generated_Image_juae0fjuae0fjuae.png?v=1760430626",
+   "https://thumbs.dreamstime.com/b/ultra-realistic-ad-luxury-perfume-bottle-intricate-design-soft-lighting-floral-accents-376445995.jpg",
+   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRube381iSDsy3K-_AOuIlCJcON85PpoxUoTQ&s",
+   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV1PpDxPZQxvAHZvYzhjKVxSg_wiRINVp1TQ&s",
+   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzVnH9nZdSDwcjlelbHOS8sJtCFEiC_H_LOg&s",
+   "https://cpimg.tistatic.com/10709246/s/4/extra-10709246.jpeg",
+   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0rpdYsMxE9VTUOkqULLjS8BGD8Z1PLlBIcw&s",
+   "https://i.pinimg.com/736x/79/01/39/7901395c23f2fa1d5f3017b492b4d334.jpg",
+   "https://i.pinimg.com/736x/cf/0a/d9/cf0ad95452fe3167050e43c67947f99d.jpg",
+   "https://i.pinimg.com/1200x/e5/1f/b0/e51fb0d05fedb13ad31de350281c9244.jpg"
+];
+
+let pages = {};
+let basePrice = 1800;
+const totalPages = 5;
+
+// Generate 5 pages × 4 products
+for(let p=1; p<=totalPages; p++){
+    pages[p] = [];
+    for(let i=0;i<4;i++){
+        let imgIndex = (p-1)*4 + i;
+        pages[p].push({
+            name: brands[(p+i)%brands.length] + " Essence " + (p+i),
+            price: basePrice + p*150 + i*200,
+            img: images[imgIndex]
+        });
+    }
+}
+
+const productBox = document.getElementById("products");
+const paginationBox = document.getElementById("pagination");
+const toast = document.getElementById("toast");
+
+// LOAD PAGE
+function loadPage(page){
+    productBox.innerHTML="";
+    pages[page].forEach(p=>{
+        productBox.innerHTML += `
+        <div class="card">
+            <img src="${p.img}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p>₹${p.price}</p>
+            <button onclick="addToCart('${p.name}',${p.price},'${p.img}')">
+                Add to Cart
+            </button>
+        </div>`;
+    });
+}
+
+// ADD TO CART
+function addToCart(name, price, img){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let existing = cart.find(item => item.name === name);
+    if(existing){ existing.qty += 1; }
+    else{ cart.push({name,price,img,qty:1}); }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    toast.classList.add("show");
+    setTimeout(()=>toast.classList.remove("show"),2000);
+}
+
+// PAGINATION
+for(let i=1;i<=totalPages;i++){
+    paginationBox.innerHTML += `<button onclick="loadPage(${i})">${i}</button>`;
+}
+
+loadPage(1);
+</script>
+
+</body>
+</html>

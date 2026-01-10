@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfumy | Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body{
+            height:100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+            url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsxRInfBApEiTt-tQ2ND1pRf-D4KMvNRxbFQ&s") center/cover no-repeat;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .signup-box{
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
+            padding:35px;
+            width:370px;
+            border-radius:15px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.4);
+            color:white;
+            text-align:center;
+        }
+
+        h2{
+            margin-bottom:20px;
+            letter-spacing:2px;
+        }
+
+        .input-box{
+            margin-bottom:15px;
+            text-align:left;
+        }
+
+        label{
+            font-size:14px;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            border:none;
+            outline:none;
+            border-radius:8px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#e91e63;
+            border:none;
+            border-radius:25px;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+            margin-top:10px;
+        }
+
+        button:hover{
+            background:#c2185b;
+        }
+
+        .message{
+            margin-top:15px;
+            font-size:14px;
+            font-weight:bold;
+        }
+
+        .error{
+            color:#ffb6b6;
+        }
+
+        .success{
+            color:#9cff9c;
+        }
+
+        .extra{
+            margin-top:15px;
+            font-size:14px;
+        }
+
+        .extra a{
+            color:#ffb6c1;
+            text-decoration:none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="signup-box">
+    <h2>PERFUMY</h2>
+
+    <form action="index.html" onsubmit="return validateSignup()">
+
+        <div class="input-box">
+            <label>Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+        </div>
+
+        <div class="input-box">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+        </div>
+
+        <div class="input-box">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Create password">
+        </div>
+
+        <div class="input-box">
+            <label>Confirm Password</label>
+            <input type="password" id="confirm" placeholder="Confirm password">
+        </div>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="message" id="msg"></div>
+
+    <div class="extra">
+        Already have an account?
+        <a href="login.html">Login</a>
+    </div>
+</div>
+
+<script>
+    function validateSignup(){
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let password = document.getElementById("password").value.trim();
+        let confirm = document.getElementById("confirm").value.trim();
+        let msg = document.getElementById("msg");
+
+        if(name === "" || email === "" || password === "" || confirm === ""){
+            msg.innerHTML = "⚠️ All fields are required";
+            msg.className = "message error";
+            return false;
+        }
+
+        if(password.length < 6){
+            msg.innerHTML = "⚠️ Password must be at least 6 characters";
+            msg.className = "message error";
+            return false;
+        }
+
+        if(password !== confirm){
+            msg.innerHTML = "⚠️ Passwords do not match";
+            msg.className = "message error";
+            return false;
+        }
+
+        msg.innerHTML = "✅ Signup Successful";
+        msg.className = "message success";
+        return false; // demo purpose
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us | Perfumy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: 'Georgia', serif;
+    }
+
+    /* BACKGROUND */
+    body{
+      background: url("https://thumbs.dreamstime.com/b/close-up-view-perfume-bottle-table-perfect-highlighting-fragrance-details-advertising-luxury-product-perfume-bottle-388249214.jpg")
+                  no-repeat center center/cover;
+      min-height:100vh;
+      color:#fff;
+    }
+
+    /* NAVBAR */
+    .navbar{
+      background:#8b2f2f;
+      padding:15px 40px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo{
+      font-size:26px;
+      font-weight:bold;
+    }
+
+    .nav-links a{
+      color:white;
+      text-decoration:none;
+      margin:0 15px;
+      font-size:16px;
+    }
+
+    .order-btn{
+      background-color: bisque;
+      color:#8b2f2f;
+      padding:8px 16px;
+      border-radius:6px;
+      font-weight:bold;
+    }
+
+    /* ABOUT CONTENT */
+    .about-container{
+      max-width:900px;
+      margin:70px auto;
+      background:rgba(0,0,0,0.6);
+      padding:40px;
+      border-radius:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+    }
+
+    .about-container h1{
+      text-align:center;
+      font-size:36px;
+      margin-bottom:20px;
+      color:#f5c1c1;
+    }
+
+    .about-container p{
+      font-size:18px;
+      line-height:1.8;
+      margin-bottom:15px;
+      text-align:justify;
+    }
+
+    .highlight{
+      color:#f5c1c1;
+      font-weight:bold;
+    }
+
+    /* FOOTER */
+    footer{
+      text-align:center;
+      padding:18px;
+      background:#8b2f2f;
+      font-size:14px;
+      margin-top:40px;
+    }
+
+    @media(max-width:768px){
+      .about-container{
+        margin:40px 15px;
+        padding:25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="logo">Perfumy</div>
+    <div class="nav-links">
+      <a href="navi.html">Home</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="shop.html" class="order-btn">Order Now</a>
+    </div>
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <div class="about-container">
+    <h1>About Us</h1>
+
+    <p>
+      Welcome to <span class="highlight">Perfumy</span>, where fragrance becomes an experience.
+      We believe every perfume tells a story — of elegance, confidence, and individuality.
+    </p>
+
+    <p>
+      Our collection is crafted with premium ingredients sourced from around the world,
+      blending tradition with modern luxury to create unforgettable scents.
+    </p>
+
+    <p>
+      At <span class="highlight">Perfumy</span>, quality and customer satisfaction are our highest priorities.
+      From soft floral notes to rich, bold aromas, our perfumes are designed to suit every mood and moment.
+    </p>
+
+    <p>
+      Discover your signature scent with Perfumy — because luxury should be felt, remembered,
+      and cherished.
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Perfumy | All Rights Reserved
+  </footer>
+
+</body>
+</html>

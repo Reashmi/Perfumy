@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfumy | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body{
+            background:#111;
+            color:white;
+        }
+
+        /* NAVBAR */
+        nav{
+            background:brown;
+            padding:15px 30px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        nav h2{
+            letter-spacing:2px;
+        }
+
+        nav ul{
+            list-style:none;
+            display:flex;
+            gap:20px;
+        }
+
+        nav ul li a{
+            color:white;
+            text-decoration:none;
+            font-weight:500;
+        }
+
+        nav ul li a:hover{
+            text-decoration:underline;
+        }
+
+        /* HERO SECTION */
+        .hero{
+            height:80vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+            url("https://png.pngtree.com/thumb_back/fh260/background/20251226/pngtree-elegant-perfume-bottle-glowing-with-amber-liquid-against-dark-bokeh-lit-image_20876053.webp")
+            center/cover no-repeat;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+        }
+
+        .hero h1{
+            font-size:48px;
+            margin-bottom:15px;
+        }
+
+        .hero p{
+            font-size:18px;
+            max-width:500px;
+        }
+
+        .btn{
+            margin-top:25px;
+            padding:12px 30px;
+            background:brown;
+            border:none;
+            border-radius:25px;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+        }
+
+        .btn:hover{
+            background:brown;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION BAR -->
+<nav>
+    <h2>PERFUMY</h2>
+    <ul>
+        
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="aboutus.html">About</a></li>
+        <li><a href="card.html">MY card</a></li>
+        <li><a href="index.html">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- HERO CONTENT -->
+<section class="hero">
+    <h1>Welcome to Perfumy </h1>
+    <p>Discover luxury fragrances crafted for elegance and confidence.</p>
+    
+</section>
+
+</body>
+</html>
